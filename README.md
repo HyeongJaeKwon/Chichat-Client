@@ -13,5 +13,5 @@ This repo is focused on Node.js Express REST API structure and React Routing pag
 <h3>Comments, change password, like, and other functionality included</h3>
 
 <p align="center">
-  <img src="/post it.png" width="350" title="image text">
+  <img src="/post it.png" width="600" title="image text">
 </p>
