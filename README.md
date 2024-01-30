@@ -10,4 +10,6 @@ This repo is focused on Node.js Express REST API structure and React Routing pag
 
 <h3>Sign in and go back to Home</h3>
 <h3>Upload your post</h3>
-<h3>Comments, change password, and other functionality included</h3>
+<h3>Comments, change password, like, and other functionality included</h3>
+
+![Screenshot](post it.png)
