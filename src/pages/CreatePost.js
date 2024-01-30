@@ -26,7 +26,7 @@ function CreatePost() {
 
     const st = localStorage.getItem("accessToken");
 
-    axios.post("http://localhost:3001/posts", data, {headers:{accessToken:localStorage.getItem('accessToken')}}).then((response) => {
+    axios.post("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts", data, {headers:{accessToken:localStorage.getItem('accessToken')}}).then((response) => {
       navi("/");
     });
   };

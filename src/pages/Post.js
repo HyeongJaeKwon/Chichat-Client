@@ -13,11 +13,11 @@ function Post() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
+    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
 
-    axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
+    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments/${id}`).then((response) => {
       setComments(response.data);
     });
   }, []);
@@ -25,7 +25,7 @@ function Post() {
   const addComment = () => {
     axios
       .post(
-        "http://localhost:3001/comments",
+        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments",
         { commentBody: newComment, PostId: id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -45,7 +45,7 @@ function Post() {
 
   const deleteComment = (cId) => {
     axios
-      .delete(`http://localhost:3001/comments/${cId}`, {
+      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments/${cId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
@@ -62,7 +62,7 @@ function Post() {
 
   const deletePost = (pId) => {
     axios
-      .delete(`http://localhost:3001/posts/${pId}`, {
+      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/${pId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((r) => {
@@ -76,7 +76,7 @@ function Post() {
       let newTitle = prompt("Type new title");
       axios
         .put(
-          "http://localhost:3001/posts/title",
+          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/title",
           { newTitle: newTitle, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
@@ -88,7 +88,7 @@ function Post() {
       let newText = prompt("Type new postText");
       axios
         .put(
-          "http://localhost:3001/posts/postText",
+          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/postText",
           { newText: newText, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )

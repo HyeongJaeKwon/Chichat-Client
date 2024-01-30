@@ -16,7 +16,7 @@ function Login() {
             userName: userName,
             password: password
         }
-        axios.post("http://localhost:3001/auth/login", data).then((res)=>{
+        axios.post("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/auth/login", data).then((res)=>{
             if(res.data.error) alert(res.data.error)
             else {
                 localStorage.setItem("accessToken", res.data.accessToken);

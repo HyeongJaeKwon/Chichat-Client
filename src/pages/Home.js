@@ -17,7 +17,7 @@ function Home() {
       navi("/login");
     } else {
       axios
-        .get("http://localhost:3001/posts", {
+        .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ function Home() {
   const likeAPost = (pId) => {
     axios
       .post(
-        "http://localhost:3001/like",
+        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/like",
         { PostId: pId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
