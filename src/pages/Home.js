@@ -17,7 +17,7 @@ function Home() {
       navi("/login");
     } else {
       axios
-        .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts", {
+        .get("https://post-it-practice-b43790932dc1.herokuapp.com/posts", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
