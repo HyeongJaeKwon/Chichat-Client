@@ -11,6 +11,8 @@ function Post() {
   const [newComment, setNewcomment] = useState("");
   const { authState } = useContext(AuthContext);
   let navi = useNavigate();
+  //d
+
 
   useEffect(() => {
     axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/byId/${id}`).then((response) => {
