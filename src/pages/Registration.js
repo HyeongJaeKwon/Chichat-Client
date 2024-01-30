@@ -2,8 +2,10 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Registration() {
+  let navi = useNavigate();
     const initialValues = {
        
         password: "",
@@ -20,6 +22,7 @@ function Registration() {
   const onSubmit =(data)=>{
     axios.post("https://post-it-practice-b43790932dc1.herokuapp.com/auth", data).then(()=>{
         console.log(data);
+        navi("/")
     })
   }
 
