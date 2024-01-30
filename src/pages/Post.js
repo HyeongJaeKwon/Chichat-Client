@@ -13,11 +13,11 @@ function Post() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/byId/${id}`).then((response) => {
+    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
 
-    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments/${id}`).then((response) => {
+    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments/${id}`).then((response) => {
       setComments(response.data);
     });
   }, []);
@@ -25,7 +25,7 @@ function Post() {
   const addComment = () => {
     axios
       .post(
-        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments",
+        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments",
         { commentBody: newComment, PostId: id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -45,7 +45,7 @@ function Post() {
 
   const deleteComment = (cId) => {
     axios
-      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/comments/${cId}`, {
+      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments/${cId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
@@ -62,7 +62,7 @@ function Post() {
 
   const deletePost = (pId) => {
     axios
-      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/${pId}`, {
+      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/${pId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((r) => {
@@ -76,7 +76,7 @@ function Post() {
       let newTitle = prompt("Type new title");
       axios
         .put(
-          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/title",
+          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/title",
           { newTitle: newTitle, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
@@ -88,7 +88,7 @@ function Post() {
       let newText = prompt("Type new postText");
       axios
         .put(
-          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts/postText",
+          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/postText",
           { newText: newText, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )

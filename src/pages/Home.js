@@ -17,7 +17,7 @@ function Home() {
       navi("/login");
     } else {
       axios
-        .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/posts", {
+        .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -34,7 +34,7 @@ function Home() {
   const likeAPost = (pId) => {
     axios
       .post(
-        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/like",
+        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/like",
         { PostId: pId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )

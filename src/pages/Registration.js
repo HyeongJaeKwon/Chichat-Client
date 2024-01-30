@@ -18,7 +18,7 @@ function Registration() {
   });
 
   const onSubmit =(data)=>{
-    axios.post("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/auth", data).then(()=>{
+    axios.post("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/auth", data).then(()=>{
         console.log(data);
     })
   }

@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/auth/auth", {
+      .get("https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/auth/auth", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
