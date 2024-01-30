@@ -6,7 +6,7 @@ function ChangePassword() {
   const [np, setnp] = useState("");
   const changePassword = () => {
     axios.put(
-      "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/auth/changepassword",
+      "https://post-it-practice-b43790932dc1.herokuapp.com/rd",
       { oldPassworld: op, newPassword: np },
       { headers: { accessToken: localStorage.getItem("accessToken") } }
     ).then((res)=>{

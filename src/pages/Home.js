@@ -34,7 +34,7 @@ function Home() {
   const likeAPost = (pId) => {
     axios
       .post(
-        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/like",
+        "https://post-it-practice-b43790932dc1.herokuapp.com/like",
         { PostId: pId },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )

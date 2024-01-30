@@ -13,11 +13,11 @@ function Post() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/byId/${id}`).then((response) => {
+    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
 
-    axios.get(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments/${id}`).then((response) => {
+    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/comments/${id}`).then((response) => {
       setComments(response.data);
     });
   }, []);
@@ -25,7 +25,7 @@ function Post() {
   const addComment = () => {
     axios
       .post(
-        "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments",
+        "https://post-it-practice-b43790932dc1.herokuapp.com/comments",
         { commentBody: newComment, PostId: id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -45,7 +45,7 @@ function Post() {
 
   const deleteComment = (cId) => {
     axios
-      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/comments/${cId}`, {
+      .delete(`https://post-it-practice-b43790932dc1.herokuapp.com/comments/${cId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
@@ -62,7 +62,7 @@ function Post() {
 
   const deletePost = (pId) => {
     axios
-      .delete(`https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/${pId}`, {
+      .delete(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/${pId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((r) => {
@@ -76,7 +76,7 @@ function Post() {
       let newTitle = prompt("Type new title");
       axios
         .put(
-          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/title",
+          "https://post-it-practice-b43790932dc1.herokuapp.com/posts/title",
           { newTitle: newTitle, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
@@ -88,7 +88,7 @@ function Post() {
       let newText = prompt("Type new postText");
       axios
         .put(
-          "https://ro2padgkirvcf55m.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/posts/postText",
+          "https://post-it-practice-b43790932dc1.herokuapp.com/posts/postText",
           { newText: newText, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
