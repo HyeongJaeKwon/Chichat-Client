@@ -18,7 +18,7 @@ function Registration() {
   });
 
   const onSubmit =(data)=>{
-    axios.post("https://post-it-practice-b43790932dc1.herokuapp.com//auth", data).then(()=>{
+    axios.post("https://post-it-practice-b43790932dc1.herokuapp.com/auth", data).then(()=>{
         console.log(data);
     })
   }

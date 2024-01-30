@@ -12,10 +12,10 @@ function Profile() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com//auth/basicinfo/${uId}`).then((res) => {
+    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/auth/basicinfo/${uId}`).then((res) => {
       setUserName(res.data.userName);
     });
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com//posts/byUserId/${uId}`).then((res) => {
+    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/byUserId/${uId}`).then((res) => {
       setLop(res.data);
     });
   }, []);
