@@ -10,7 +10,7 @@ function CreatePost() {
   const { authState } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!localStorage.getItem('accessToken')) {
+    if (!localStorage.getItem("accessToken")) {
       navi("/login");
     }
   }, []);
@@ -18,23 +18,24 @@ function CreatePost() {
   const initialValues = {
     title: "",
     postText: "",
-
   };
 
   const onSubmit = (data) => {
-    
-
+    console.log(data);
     const st = localStorage.getItem("accessToken");
 
-    axios.post("https://post-it-practice-b43790932dc1.herokuapp.com/posts", data, {headers:{accessToken:localStorage.getItem('accessToken')}}).then((response) => {
-      navi("/");
-    });
+    axios
+      .post("http://localhost:3001/posts", data, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        navi("/");
+      });
   };
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title"),
     postText: Yup.string().required(),
-  
   });
   return (
     <div className="createPostPage">
@@ -60,7 +61,7 @@ function CreatePost() {
             name="postText"
             placeholder="(Ex. Post...)"
           />
-    
+
           <button type="submit">Create Post</button>
         </Form>
       </Formik>

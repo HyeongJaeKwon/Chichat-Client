@@ -15,11 +15,11 @@ function Post() {
 
 
   useEffect(() => {
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/byId/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
 
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/comments/${id}`).then((response) => {
+    axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
   }, []);
@@ -27,7 +27,7 @@ function Post() {
   const addComment = () => {
     axios
       .post(
-        "https://post-it-practice-b43790932dc1.herokuapp.com/comments",
+        "http://localhost:3001/comments",
         { commentBody: newComment, PostId: id },
         { headers: { accessToken: localStorage.getItem("accessToken") } }
       )
@@ -47,7 +47,7 @@ function Post() {
 
   const deleteComment = (cId) => {
     axios
-      .delete(`https://post-it-practice-b43790932dc1.herokuapp.com/comments/${cId}`, {
+      .delete(`http://localhost:3001/comments/${cId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
@@ -64,7 +64,7 @@ function Post() {
 
   const deletePost = (pId) => {
     axios
-      .delete(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/${pId}`, {
+      .delete(`http://localhost:3001/posts/${pId}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((r) => {
@@ -78,7 +78,7 @@ function Post() {
       let newTitle = prompt("Type new title");
       axios
         .put(
-          "https://post-it-practice-b43790932dc1.herokuapp.com/posts/title",
+          "http://localhost:3001/posts/title",
           { newTitle: newTitle, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
@@ -90,7 +90,7 @@ function Post() {
       let newText = prompt("Type new postText");
       axios
         .put(
-          "https://post-it-practice-b43790932dc1.herokuapp.com/posts/postText",
+          "http://localhost:3001/posts/postText",
           { newText: newText, id: id },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )

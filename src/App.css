@@ -2,13 +2,15 @@
   width: 100%;
   height: auto;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-size: 0.875rem;
+  color: rgb(232, 232, 232);
 }
 
 .post {
@@ -17,9 +19,10 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin: 15px auto 0px auto;
   border: 1px solid lightgray;
   font-family: Arial, Helvetica, sans-serif;
+  /* background-color: black; */
 
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -58,18 +61,38 @@ body {
 .footer .username {
   flex: 50%;
 }
-.footer .buttons {
-  flex: 50%;
+.buttons {
+  /* flex: 50%; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: white;
+  border-radius: 20px;
 }
 
+.hoverButton {
+  color: black;
+  /* // padding: "10px 30px", */
+  padding-left: 20px;
+  background: white;
+  border-radius: 20px;
+  /* // margin: "5px 5px 5px 5px",
+  // display:"inline-block", */
+  text-align: left;
+  width: 100%;
+  transition-duration: 500ms;
+}
+.hoverButton:hover {
+  background-color: lightgrey;
+}
 .likeBttn {
-  color: rgba(250, 250, 250, 0.8);
+  color: grey;
+}
+.nav-link:hover {
+  color: red;
 }
 .unlikeBttn {
-  color: white;
+  color: darkslateblue;
 }
 
 .buttons label {
@@ -87,11 +110,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .formContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
+  width: 300px;
   height: auto;
   padding: 20px;
   border: 5px solid dodgerblue;
@@ -150,10 +174,33 @@ span {
   justify-content: flex-end;
   align-items: center;
 }
+.loggedInContainer h4 {
+  color: white;
+  margin-right: 10px;
+  font-size: 20px;
+
+}
+
+.loggedInContainer button {
+  border-radius: 10px;
+  
+}
+
 .navbar a {
   margin-left: 20px;
   text-decoration: none;
   color: white;
+}
+
+.flipButton {
+  background-color: white;
+  color: black;
+  font-size: 13px;
+  border: 1px solid black;
+  height: 30px;
+  width: 50px;
+  padding: 0px 0px;
+  border-radius: 20px;
 }
 
 .navbar button {
@@ -177,6 +224,7 @@ span {
   flex-direction: row;
   width: 100%;
   height: 100%;
+  /* justify-content: center; */
 }
 
 .leftSide {
@@ -258,8 +306,9 @@ button {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
-  padding-top: 100px;
+  /* height: 150px; */
+  padding-top: 10px;
+  /* background-color: red; */
 }
 
 .loginContainer input,
@@ -274,8 +323,140 @@ button {
 .loginContainer button {
   background-color: dodgerblue;
   color: white;
+  border-radius: 20px;
 }
 
 .loginContainer input {
   border: 2px solid dodgerblue;
+  border-radius: 20px;
+}
+
+#sidebar {
+  background: #202123;
+  width: 220px;
+  color: white;
+  font-weight: bold;
+  height: 90vh;
+}
+
+.gpt-main {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 90vh;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar .form-control {
+  padding: 0.75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+/*
+ * Utilities
+ */
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.shareCard {
+  width: 50px;
+  height: 30px;
+  border-radius: 5rem;
+  color: white;
+  font-size: 12px;
+  background-color: darkblue;
+  padding: 3px;
+  /* justify-content: center; */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  /* display: flex; */
+
+  /* align-items: center; */
 }

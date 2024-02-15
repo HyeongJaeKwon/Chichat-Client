@@ -12,26 +12,41 @@ function Profile() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/auth/basicinfo/${uId}`).then((res) => {
+    axios.get(`http://localhost:3001/auth/basicinfo/${uId}`).then((res) => {
       setUserName(res.data.userName);
     });
-    axios.get(`https://post-it-practice-b43790932dc1.herokuapp.com/posts/byUserId/${uId}`).then((res) => {
+    axios.get(`http://localhost:3001/posts/byUserId/${uId}`).then((res) => {
       setLop(res.data);
     });
   }, []);
   return (
-    <div className="profilePageContainer">
-      <div className="basicInfo">
-        {" "}
-        <h1>
-          {" "}
-          UserName: {userName}
+    <div style={{ width: "100%" }}>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            // margin: "0px auto 0px auto",
+            background: "white",
+            justifyContent: "center",
+            padding: "0px",
+          }}
+        >
+          <text style={{marginTop:"auto", marginBottom:"auto", marginRight:"10px"}}> User Name:</text>
+          <text style={{marginTop:"auto", marginBottom:"auto" , fontWeight:"bold"}}>{userName}</text>
           {authState.userName === userName && (
-            <button onClick={()=> {navi("/changepassword")}}>Change my password</button>
+            <button
+              onClick={() => {
+                navi("/changepassword");
+              }}
+              style={{padding:"5px", width:"fit-content", borderRadius:"10px", height:"fit-content", margin:"10px", fontSize:"12px", justifyContent:"center"}}
+            >
+              Change my password
+            </button>
           )}
-        </h1>
+        </div>
       </div>
-      <div className="listOfPosts">
+
+      <div>
         {lop.map((value, key) => {
           return (
             <div className="post">

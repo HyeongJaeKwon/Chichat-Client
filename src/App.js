@@ -1,5 +1,11 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
@@ -10,8 +16,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile";
+import GPT from "./pages/GPT";
 
 import ChangePassword from "./pages/ChangePassword";
+import SeeCards from "./pages/MyCards";
+import TextToSpeech from "./components/TextToSpeech";
+// import { useNavigate } from "react-router-dom";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -19,10 +29,11 @@ function App() {
     id: 0,
     status: false,
   });
+  let navi = useNavigate();
 
   useEffect(() => {
     axios
-      .get("https://post-it-practice-b43790932dc1.herokuapp.com/auth/auth", {
+      .get("http://localhost:3001/auth/auth", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -51,32 +62,49 @@ function App() {
       id: 0,
       status: false,
     });
+    navi("/");
+    window.location.reload(false);
+
   };
 
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
-        <Router>
-          <div className="navbar">
+  
+          <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
             {!authState.status ? (
               <div>
+                <Link to="/"><i style={{fontWeight:"bold"}}>ChiChat</i></Link>
                 <Link to="/login">Login</Link>
                 <Link to="/registration">Sign up</Link>
               </div>
             ) : (
               <div>
-                <Link to="/">Home</Link>
-                <Link to="/createpost">Create a Post</Link>
+                <Link to="/"><i style={{fontWeight:"bold"}}>ChiChat</i></Link>
+                {/* <Link to="/createpost">Create a Post</Link> */}
+                <Link to="/gpt">GPT</Link>
+                <Link to="/mycards">My Cards</Link>
               </div>
             )}
 
             {authState.status && (
               <div className="loggedInContainer">
                 <h4>{authState.userName}</h4>
-                <button onClick={logout}>Log out</button>
+                <button
+                  onClick={logout}
+                  style={{
+                    background: "white",
+                    padding: "0px",
+                    width: "60px",
+                    height: "30px",
+                    fontSize: "12px",
+                  }}
+                >
+                  Log out
+                </button>
               </div>
             )}
-          </div>
+          </nav>
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -86,9 +114,11 @@ function App() {
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile/:uId" element={<Profile />} />
             <Route path="/changepassword" element={<ChangePassword />} />
+            <Route path="/gpt" element={<GPT />} />
+            <Route path="/mycards" element={<SeeCards />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </Router>
+      
       </AuthContext.Provider>
     </div>
   );

@@ -16,7 +16,7 @@ function Login() {
             userName: userName,
             password: password
         }
-        axios.post("https://post-it-practice-b43790932dc1.herokuapp.com/auth/login", data).then((res)=>{
+        axios.post("http://localhost:3001/auth/login", data).then((res)=>{
             if(res.data.error) alert(res.data.error)
             else {
                 localStorage.setItem("accessToken", res.data.accessToken);
@@ -34,10 +34,14 @@ function Login() {
     <div className='loginContainer'>
         <input type='text' onChange={(e)=>{
             setUserName(e.target.value)
-        }}/>
+        }}
+        placeholder=' username'
+        />
         <input type='password' onChange={(e)=>{
             setPassword(e.target.value)
-        }}/>
+        }}
+        placeholder=' password'
+        />
         <button onClick={login}>Sign in</button>
     </div>
   )
