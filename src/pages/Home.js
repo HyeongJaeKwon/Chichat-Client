@@ -9,6 +9,70 @@ import { Badge, Button, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fontSize } from "@mui/system";
 import TextToSpeech from "../components/TextToSpeech";
+// import { useState } from 'react';
+import styled from "styled-components";
+
+export const ModalContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const ModalBackdrop = styled.div`
+  z-index: 1;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+export const ModalBtn = styled.button`
+  background-color: var(--coz-purple-600);
+  text-decoration: none;
+  border: none;
+  padding: 20px;
+  color: white;
+  border-radius: 30px;
+  cursor: grab;
+`;
+
+export const ExitBtn = styled(ModalBtn)`
+  background-color: #3498db;
+  border-radius: 15px;
+  text-decoration: none;
+  margin: 0px 10px 0px auto;
+  padding: 5px 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+`;
+
+export const ModalView = styled.div.attrs((props) => ({
+  role: "dialog",
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 600px;
+  padding: 10px 0px 50px 0px;
+  background-color: #ffffff;
+  > div.desc {
+    margin: 8px;
+    font-size: 17px;
+    color: var(--coz-purple-600);
+  }
+`;
 
 function Home() {
   const [listofPosts, setListofPosts] = useState([]);
@@ -16,6 +80,13 @@ function Home() {
   const [addedPosts, setAddedPosts] = useState([]);
   let navi = useNavigate();
   const { authState } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
@@ -60,44 +131,43 @@ function Home() {
   }, []);
 
   const likeAPost = (pId) => {
-    if(!authState.status){
-alert("Sign in to like")
-    }else{
+    if (!authState.status) {
+      alert("Sign in to like");
+    } else {
       axios
-      .post(
-        "http://localhost:3001/like",
-        { PostId: pId },
-        { headers: { accessToken: localStorage.getItem("accessToken") } }
-      )
-      .then((response) => {
-        setListofPosts(
-          listofPosts.map((post) => {
-            if (post.id === pId) {
-              if (response.data.liked) {
-                return { ...post, Likes: [...post.Likes, 0] };
+        .post(
+          "http://localhost:3001/like",
+          { PostId: pId },
+          { headers: { accessToken: localStorage.getItem("accessToken") } }
+        )
+        .then((response) => {
+          setListofPosts(
+            listofPosts.map((post) => {
+              if (post.id === pId) {
+                if (response.data.liked) {
+                  return { ...post, Likes: [...post.Likes, 0] };
+                } else {
+                  const arr = post.Likes;
+                  arr.pop();
+                  return { ...post, Likes: arr };
+                }
               } else {
-                const arr = post.Likes;
-                arr.pop();
-                return { ...post, Likes: arr };
+                return post;
               }
-            } else {
-              return post;
-            }
-          })
-        );
-
-        if (likedPosts.includes(pId)) {
-          setLikedPosts(
-            likedPosts.filter((id) => {
-              return id != pId;
             })
           );
-        } else {
-          setLikedPosts([...likedPosts, pId]);
-        }
-      });
+
+          if (likedPosts.includes(pId)) {
+            setLikedPosts(
+              likedPosts.filter((id) => {
+                return id != pId;
+              })
+            );
+          } else {
+            setLikedPosts([...likedPosts, pId]);
+          }
+        });
     }
-    
   };
 
   const flipPost = (keyV) => {
@@ -155,6 +225,77 @@ alert("Sign in to like")
           background: "rgb(240, 240, 240)",
         }}
       >
+
+        {/** lets get started pop up modal */}
+        <>
+          <ModalContainer>
+            {isOpen ? (
+              <ModalBackdrop onClick={openModalHandler}>
+                <ModalView onClick={(e) => e.stopPropagation()}>
+                  <ExitBtn onClick={openModalHandler}>X</ExitBtn>
+                  <div className="desc">
+                    1. Sign up to have your own account
+                  </div>
+                  <div className="desc">
+                    2. Type any sentences you want to learn
+                  </div>
+                  <div className="desc">
+                    3. For every five sentences, flash cards for vocabs and
+                    sentences get created!
+                  </div>
+                  <div className="desc">
+                    4. Share your flash cards with your community!
+                  </div>
+                </ModalView>
+              </ModalBackdrop>
+            ) : null}
+          </ModalContainer>
+        </>
+
+        {/**Lets get started part */}
+        {!authState.status && (
+          <Container
+            style={{
+              margin: "0 auto",
+              width: "600px",
+              background: "white",
+              borderRadius: "15px",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div
+              style={{
+                fontWeight: "bold",
+                margin: "10px 0px",
+                background: "white",
+                textAlign: "center",
+                padding: "5px 0px",
+              }}
+            >
+              Let's learn how to do self-paced learning with ChiChat!
+            </div>
+            <button
+              style={{
+                width: "fit-content",
+                background: "#3498db",
+                margin: "auto",
+                height: "fit-content",
+                padding: "7px 25px",
+                borderRadius: "15px",
+                fontWeight: "bold",
+                margin: "5px 5px",
+              }}
+              onClick={openModalHandler}
+            >
+              Get started
+            </button>
+          </Container>
+        )}
+
+        {/**main content part */}
         <Container
           style={{
             margin: "0 auto",
@@ -166,6 +307,7 @@ alert("Sign in to like")
           {listofPosts.map((value, key) => {
             return (
               <div>
+                {/** each cell */}
                 <div
                   style={{
                     display: "flex",

@@ -394,6 +394,7 @@ function GPT() {
               onChange={(e) => {
                 setPrompt(e.target.value);
               }}
+              style={{border:"1px solid black"}}
               value={prompt}
               placeholder={` Enter your sentence`}
             />
