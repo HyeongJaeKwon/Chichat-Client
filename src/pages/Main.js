@@ -1,12 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useEffect } from "react-router-dom";
+import { AuthContext } from "../helpers/AuthContext";
 
 function Main() {
   const nav = useNavigate();
+  const { authState } = useContext(AuthContext);
 
   const diveIn = () => {
     nav("/home");
   };
+
+useEffect(()=>{
+  if (localStorage.getItem("accessToken")){
+    nav("/home")
+  }
+},[])
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
