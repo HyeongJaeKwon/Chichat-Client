@@ -90,7 +90,7 @@ function Home() {
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
-      axios.get("http://localhost:3001/posts/noId").then((response) => {
+      axios.get("https://chichat-b5ef36ed707d.herokuapp.com/posts/noId").then((response) => {
         var newLop = response.data.listofPosts.map((each) => {
           each.isFlipped = false;
           return each;
@@ -106,7 +106,7 @@ function Home() {
       // navi("/login");
     } else {
       axios
-        .get("http://localhost:3001/posts", {
+        .get("https://chichat-b5ef36ed707d.herokuapp.com/posts", {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
@@ -136,7 +136,7 @@ function Home() {
     } else {
       axios
         .post(
-          "http://localhost:3001/like",
+          "https://chichat-b5ef36ed707d.herokuapp.com/like",
           { PostId: pId },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )
@@ -187,7 +187,7 @@ function Home() {
     } else {
       axios
         .post(
-          "http://localhost:3001/add",
+          "https://chichat-b5ef36ed707d.herokuapp.com/add",
           { PostId: postId },
           { headers: { accessToken: localStorage.getItem("accessToken") } }
         )

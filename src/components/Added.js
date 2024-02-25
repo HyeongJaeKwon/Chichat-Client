@@ -30,7 +30,7 @@ function Added() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/add", {
+      .get("https://chichat-b5ef36ed707d.herokuapp.com/add", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {

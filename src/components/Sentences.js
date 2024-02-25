@@ -23,7 +23,7 @@ function Sentences() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gpt", {
+      .get("https://chichat-b5ef36ed707d.herokuapp.com/gpt", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {
@@ -48,7 +48,7 @@ function Sentences() {
         });
 
         axios
-          .get("http://localhost:3001/posts/byCategory/sentence", {
+          .get("https://chichat-b5ef36ed707d.herokuapp.com/posts/byCategory/sentence", {
             headers: { accessToken: localStorage.getItem("accessToken") },
           })
           .then((rps) => {
@@ -142,7 +142,7 @@ function Sentences() {
     const st = localStorage.getItem("accessToken");
 
     axios
-      .post("http://localhost:3001/posts", data, {
+      .post("https://chichat-b5ef36ed707d.herokuapp.com/posts", data, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {

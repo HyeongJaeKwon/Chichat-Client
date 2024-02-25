@@ -13,10 +13,10 @@ function Profile() {
   let navi = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/auth/basicinfo/${uId}`).then((res) => {
+    axios.get(`https://chichat-b5ef36ed707d.herokuapp.com/auth/basicinfo/${uId}`).then((res) => {
       setUserName(res.data.userName);
     });
-    axios.get(`http://localhost:3001/posts/byUserId/${uId}`).then((res) => {
+    axios.get(`https://chichat-b5ef36ed707d.herokuapp.com/posts/byUserId/${uId}`).then((res) => {
       setLop(res.data);
     });
   }, []);

@@ -66,7 +66,7 @@ function GPT() {
     );
 
     axios
-      .post("http://localhost:3001/gpt/chat", data, {
+      .post("https://chichat-b5ef36ed707d.herokuapp.com/gpt/chat", data, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((res) => {
@@ -93,7 +93,7 @@ function GPT() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/gpt", {
+      .get("https://chichat-b5ef36ed707d.herokuapp.com/gpt", {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {

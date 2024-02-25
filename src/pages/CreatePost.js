@@ -25,7 +25,7 @@ function CreatePost() {
     const st = localStorage.getItem("accessToken");
 
     axios
-      .post("http://localhost:3001/posts", data, {
+      .post("https://chichat-b5ef36ed707d.herokuapp.com/posts", data, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {

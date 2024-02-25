@@ -17,7 +17,7 @@ function Registration() {
   });
 
   const onSubmit = (data) => {
-    axios.post("http://localhost:3001/auth", data).then((res) => {
+    axios.post("https://chichat-b5ef36ed707d.herokuapp.com/auth", data).then((res) => {
      if (res.data.error){
         alert(res.data.error);
       }else{

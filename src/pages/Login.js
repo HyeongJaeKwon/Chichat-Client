@@ -15,7 +15,7 @@ function Login() {
       userName: userName,
       password: password,
     };
-    axios.post("http://localhost:3001/auth/login", data).then((res) => {
+    axios.post("https://chichat-b5ef36ed707d.herokuapp.com/auth/login", data).then((res) => {
       if (res.data.error) alert(res.data.error);
       else {
         localStorage.setItem("accessToken", res.data.accessToken);
