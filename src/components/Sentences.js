@@ -29,10 +29,12 @@ function Sentences() {
       .then((response) => {
         var arr = [];
         var res = [];
+        console.log(response.data);
+        // console.log("hi")
         response.data.res.map((v) => {
-          console.log(v);
+          // console.log(v);
           arr = [];
-          if (v.ChatMessages.length == 10) {
+          if (v.ChatMessages.length >= 10) {
             for (var i = 0; i < 10; i += 2) {
               arr.push({
                 prompt: v.ChatMessages[i].message,
@@ -47,22 +49,28 @@ function Sentences() {
           }
         });
 
+
+        //getting all the shared posts so that we can check which ones already shared
         axios
-          .get("https://chichat-b5ef36ed707d.herokuapp.com/posts/byCategory/sentence", {
-            headers: { accessToken: localStorage.getItem("accessToken") },
-          })
+          .get(
+            "https://chichat-b5ef36ed707d.herokuapp.com/posts/byCategory/sentence",
+            {
+              headers: { accessToken: localStorage.getItem("accessToken") },
+            }
+          )
           .then((rps) => {
             console.log(rps.data);
             var arr = [];
-            rps.data.map((each) => {
-              arr.push(JSON.parse(each.postText).englishV);
-            });
+            // rps.data.map((each) => {
+            //   // console.log(each.postText)
+            //   arr.push(JSON.parse(each.postText).englishV);
+            // });
 
-            console.log("Res is ");
-            console.log(res);
+            // console.log("Res is ");
+            // console.log(res);
             res.map((v) => {
-              console.log("    " + v.ChatMessages);
-              console.log(arr);
+              // console.log("    " + v.ChatMessages);
+              // console.log(arr);
               v.ChatMessages.map((e) => {
                 if (arr.includes(e.prompt)) {
                   e.isShared = true;
@@ -147,7 +155,7 @@ function Sentences() {
       })
       .then((response) => {
         // navi("/");
-        console.log(response.data);
+        // console.log(response.data);
         alert("is shared");
       });
   };

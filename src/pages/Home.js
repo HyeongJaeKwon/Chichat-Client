@@ -90,19 +90,21 @@ function Home() {
 
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) {
-      axios.get("https://chichat-b5ef36ed707d.herokuapp.com/posts/noId").then((response) => {
-        var newLop = response.data.listofPosts.map((each) => {
-          each.isFlipped = false;
-          return each;
-        });
+      axios
+        .get("https://chichat-b5ef36ed707d.herokuapp.com/posts/noId")
+        .then((response) => {
+          var newLop = response.data.listofPosts.map((each) => {
+            each.isFlipped = false;
+            return each;
+          });
 
-        setListofPosts(newLop);
-        setLikedPosts(
-          response.data.likedPosts.map((like) => {
-            return like.PostId;
-          })
-        );
-      });
+          setListofPosts(newLop);
+          setLikedPosts(
+            response.data.likedPosts.map((like) => {
+              return like.PostId;
+            })
+          );
+        });
       // navi("/login");
     } else {
       axios
@@ -114,6 +116,7 @@ function Home() {
             each.isFlipped = false;
             return each;
           });
+          // console.log(newLop[18].postText)
 
           setListofPosts(newLop);
           setLikedPosts(
@@ -225,7 +228,6 @@ function Home() {
           background: "rgb(240, 240, 240)",
         }}
       >
-
         {/** lets get started pop up modal */}
         <>
           <ModalContainer>
@@ -349,6 +351,7 @@ function Home() {
                   </div>
 
                   {/*english sentence  or word */}
+                  
                   <button className="hoverButton" onClick={() => flipPost(key)}>
                     {value.title === "sentence" ? (
                       <h6>{JSON.parse(value.postText).englishV}</h6>

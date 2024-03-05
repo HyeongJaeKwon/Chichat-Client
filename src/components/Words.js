@@ -32,7 +32,7 @@ function Words() {
         response.data.res.map((v) => {
           console.log(v);
           arr = [];
-          if (v.ChatMessages.length == 10) {
+          if (v.ChatMessages.length >= 10) {
             for (var i = 0; i < 10; i += 2) {
               var wordarr = [];
               const jparse = JSON.parse(v.ChatMessages[i + 1].message);
