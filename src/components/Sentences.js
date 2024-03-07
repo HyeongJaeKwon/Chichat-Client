@@ -61,10 +61,10 @@ function Sentences() {
           .then((rps) => {
             console.log(rps.data);
             var arr = [];
-            // rps.data.map((each) => {
-            //   // console.log(each.postText)
-            //   arr.push(JSON.parse(each.postText).englishV);
-            // });
+            rps.data.map((each) => {
+              // console.log(each.postText)
+              arr.push(JSON.parse(each.postText).englishV);
+            });
 
             // console.log("Res is ");
             // console.log(res);
