@@ -1,6 +1,6 @@
 ## MySQL, ExpressJS, React, NodeJS (Netlify, Heroku)
-Backend Source Code: https://github.com/HyeongJaeKwon/ChiChat-Backend-Node.js ===> **Heroku Server is Currently closed !**
-## Chi-Chat website: https://chi-chat.netlify.app/
+Backend Source Code: https://github.com/HyeongJaeKwon/ChiChat-Backend-Node.js 
+## Chi-Chat website: https://chi-chat.netlify.app/ ===> **Heroku Backend is Currently closed !**
 Webiste for self-learning chinese, empowered by chat gpt
 - User Authentication process using Jsonwebtoken (**JWT**), **Bcrypt**, and **local storage**.
 - Customize Chinese sentences/vocabs through **chat-gpt api**.
